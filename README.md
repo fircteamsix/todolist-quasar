@@ -1,5 +1,9 @@
 # Quasar App (todolist)
 
+<b>Atividade colaborativa.</b><br>
+TeamSix (Equipe 23 - ADS/SI 2º período (FICR 2021)):<br>
+Envolvidos: Augusto Almeida, Gedson Monteiro e Sara Moraes.<br><br>
+
 A Quasar Framework app
 
 ## Install the dependencies
