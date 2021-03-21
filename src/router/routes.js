@@ -4,14 +4,9 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') }
-    ]
-  },
-  {
-    path: '/cadtarefas',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/CadTarefas.vue') }
+      { path: '', component: () => import('pages/Index.vue') },
+      { path: '/cadtarefas', component: () => import('pages/CadTarefas.vue') },
+      { path: '/tarefas/:id', component: () => import('pages/UpdateTarefas.vue') }
     ]
   },
 

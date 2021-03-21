@@ -9,7 +9,7 @@
                     <q-input v-model="descricaoTarefa" label="Descrição da tarefa" />
                     <q-select v-model="codatual" :options="condicoes" options-value="id" option-label="descricao" label="Condição da tarefa" @input="obterCondicao" />
                     <br>
-                    <q-btn type="submit" color="primary" label="Cadastrar" />
+                    <q-btn type="submit" color="primary" label="Confirmar" />
                 </div>
             </div>
         </form>
@@ -30,6 +30,7 @@ export default {
         descricao: 'Pendente'
       },
       descricaoTarefa: '',
+      alert: false,
       accept: false
     }
   },
@@ -39,12 +40,10 @@ export default {
       const url = 'http://localhost:3000/condicao'
       this.$axios.get(url)
         .then(response => {
-          console.log(response.data)
           this.condicoes = (response.data)
         })
     },
     cadTarefa (descricaoTarefa, id) {
-      console.log(descricaoTarefa, id)
       const url = 'http://127.0.0.1:3000/tarefas'
       this.$axios.post(url, {
         descricao: descricaoTarefa,
@@ -52,7 +51,8 @@ export default {
         id_condicao: id
       })
         .then(response => {
-          console.log('Cadastrado com sucesso')
+          alert('Cadastrado com sucesso')
+          this.$router.replace('/')
         })
     },
     onReset () {

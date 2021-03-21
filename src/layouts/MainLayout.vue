@@ -15,21 +15,48 @@
     </q-header>
 
     <q-drawer v-model="left" side="left" behavior="mobile" bordered>
-      <!-- drawer content -->
+      <q-scroll-area class="fit">
+          <q-list>
+            <q-item
+              class="col-12"
+              clickable
+              v-ripple
+              v-for="(menu) in menuList"
+              :key="menu"
+            >
+              <q-session clickable @click="$router.replace(menu.link)">{{menu.label}}</q-session>
+            </q-item>
+          </q-list>
+        </q-scroll-area>
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <router-view :key="$route.path"/>
     </q-page-container>
 
   </q-layout>
 </template>
 
 <script>
+const menuList = [
+  {
+    icon: 'inbox',
+    label: 'Tarefas',
+    link: '/',
+    separator: true
+  },
+  {
+    icon: 'send',
+    label: 'Condição',
+    link: '/condicoes',
+    separator: false
+  }
+]
 export default {
   data () {
     return {
-      left: false
+      left: false,
+      menuList
     }
   }
 }

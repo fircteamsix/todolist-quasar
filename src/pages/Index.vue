@@ -1,8 +1,8 @@
 <template>
   <q-page padding class="grid">
     <div class="row">
-    <h3 class="col-sm-12 col-md-6 offset-md-3 row" style="text-align:center;">Tarefas</h3>
-    <q-list class="col-sm-12 col-md-6 offset-md-3 row" bordered separator>
+    <h3 class="col-sm-12 col-md-6 offset-md-3" style="text-align:center;">Tarefas</h3>
+    <q-list class="col-sm-12 col-md-6 offset-md-3" bordered separator>
       <q-item
         class="col-12"
         clickable
@@ -10,10 +10,14 @@
         v-for="(task) in tasks"
         :key="task"
       >
-        <q-item-section>
-          <q-item-label overline>{{task.descricao}}</q-item-label>
-          <q-item-label>{{}}</q-item-label>
+        <q-item-section @click="$router.replace('/tarefas/'+ task.id)">
+          <q-item-label overline>{{task.descricao}}
+            <br><q-badge outline color="primary" >{{condicaos[task.id_condicao-1]}}</q-badge>
+          </q-item-label>
         </q-item-section>
+      </q-item>
+      <q-item>
+        <q-btn @click="$router.replace('/cadtarefas')" round color="black" icon="add" />
       </q-item>
     </q-list>
     </div>
@@ -41,6 +45,7 @@ export default {
           console.log(response.data)
           this.tasks = (response.data)
         })
+      console.log(this.$route.params.id)
     },
     listUsers () {
       const url = 'http://localhost:3000/tarefas'
